@@ -10,13 +10,14 @@ public class InputMovement : MonoBehaviour, IPlayerActions
     public UnityEvent<Vector2> OnMoveInput;
     public UnityEvent<bool> OnSprintInput;
     public UnityEvent<bool> OnJumpInput;
+    public UnityEvent OnInteractInput;
+    public UnityEvent OnFlashlightInput;
 
     private bool _isSprintButtonHeld;
 
     private void Awake()
     {
         _inputAction = new GameInputAction();
-
         _inputAction.Enable();
         _inputAction.Player.Enable();
         _inputAction.Player.SetCallbacks(this);
@@ -26,15 +27,22 @@ public class InputMovement : MonoBehaviour, IPlayerActions
     {
         if (context.performed)
         {
-            // Memunculkan log interact di console
-            // ketika input interact ditekan
-            Debug.Log("Interact");
+            Debug.Log("Interact button pressed");
+            OnInteractInput?.Invoke();
+        }
+    }
+
+    public void OnFlashLight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Flashlight button pressed");
+            OnFlashlightInput?.Invoke();
         }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.ReadValue<Vector2>());
         OnMoveInput?.Invoke(context.ReadValue<Vector2>());
     }
 

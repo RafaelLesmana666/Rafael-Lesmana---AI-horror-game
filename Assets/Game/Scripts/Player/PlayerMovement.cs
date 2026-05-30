@@ -31,6 +31,13 @@ public class PlayerMovement : MonoBehaviour
     private bool _isSprint;
     private bool _isJump;
 
+    public bool Enabled { get; private set; } = true;
+
+    public void SetEnabled(bool isEnabled)
+    {
+        Enabled = isEnabled;
+    }
+
     public void SetMoveDirection(Vector2 inputDirection)
     {
         _movementDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
@@ -107,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
+        if (Enabled == false)
+        {
+            return;
+        }
         // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
         CalculateVelocityXZ();
         // Menghitung arah dan kecepatan gerakan character di sumbu y
@@ -124,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Mendapatkan layer Ground
         LayerMask groundLayer = LayerMask.GetMask("Ground");
-        Debug.Log(groundLayer);
         // Membuat pendeteksi berbentuk bola
         // Posisi pendeteksi nya di transform.position(posisi kaki character)
         // Radius = 0.5

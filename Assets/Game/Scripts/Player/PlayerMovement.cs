@@ -87,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
         {
             // Jika karakter bergerak maka akan mengecek
             // Apakah character sedang sprint atau tidak
-            Debug.Log(_playerStamina.CanSprint);
             if (_isSprint && _playerStamina.CanSprint)
             {
                 // Jika sedang sprint maka kecepatan akan bertambah
@@ -148,17 +147,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isGrounded == true)
         {
-            _velocityY = 0;
+            _velocityY = -2f;
 
             if (_isJump)
             {
-                _velocityY = 1;
+                _velocityY = 7f;
                 _isJump = false;
             }
         }
         else
         {
-            _velocityY = _velocityY + Physics.gravity.y * _gravityScale * Time.deltaTime;
+            _velocityY += _velocityY + Physics.gravity.y * _gravityScale * Time.deltaTime;
         }
     }
 

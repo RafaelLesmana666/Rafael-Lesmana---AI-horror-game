@@ -32,7 +32,6 @@ public partial class SetCanSeeTargetAction : Action
         }
 
         CanSeeTarget.Value = Ai.Value.SightPerception.CanSeePlayer;
-        Debug.Log(CanSeeTarget.Value);
         return Status.Success;
     }
 

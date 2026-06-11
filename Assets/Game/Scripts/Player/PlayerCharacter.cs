@@ -58,4 +58,9 @@ public class PlayerCharacter : MonoBehaviour
         // cursor mouse akan dikunci di tengah layar
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void Death() { 
+        
+        Debug.Log("wasted");
+    }
 }

@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetSprint(bool isSprint)
     {
         _isSprint = isSprint;
+        if (isSprint)
+        {
+            //visible
+            HUDManager.Instance.StaminaUI.SetVisible(true);
+        }
     }
 
     public void SetJump(bool isJump)
@@ -113,18 +118,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        if (Enabled == false)
+        Debug.Log(Enabled);
+        if (Enabled == true)
         {
-            return;
+            // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
+            CalculateVelocityXZ();
+            // Menghitung arah dan kecepatan gerakan character di sumbu y
+            // CalculateVelocityY();
+            // Menggabung arah dan kecepatan gerakan character di sumbu x, y, dan z
+            Vector3 velocity = new Vector3(_velocityXZ.x, _velocityY, _velocityXZ.z);
+            // Menggerakkan character sesuai arah dan kecepatan yang sudah dihitung
+            _charaController.Move(velocity);
         }
-        // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
-        CalculateVelocityXZ();
-        // Menghitung arah dan kecepatan gerakan character di sumbu y
-        // CalculateVelocityY();
-        // Menggabung arah dan kecepatan gerakan character di sumbu x, y, dan z
-        Vector3 velocity = new Vector3(_velocityXZ.x, _velocityY, _velocityXZ.z);
-        // Menggerakkan character sesuai arah dan kecepatan yang sudah dihitung
-        _charaController.Move(velocity);
     }
 
     //check grounded
@@ -163,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("playermovement");
         CheckIsGrounded();
         CalculateAcceleration();
 

@@ -38,7 +38,6 @@ public class HidingCloset : MonoBehaviour, IInteractable
     {
         // Memastikan ada reference posisi hide, posisi unhide,
         // dan door
-        Debug.Log("Interact with hiding closet");
         if (_hidePosition != null && _unhidePosition != null && _door != null)
         {
             // Memasukan reference player character yang berinteraksi

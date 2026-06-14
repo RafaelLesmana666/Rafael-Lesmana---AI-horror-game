@@ -27,7 +27,6 @@ public class InputMovement : MonoBehaviour, IPlayerActions
     {
         if (context.performed)
         {
-            Debug.Log("Interact button pressed");
             OnInteractInput?.Invoke();
         }
     }
@@ -36,7 +35,6 @@ public class InputMovement : MonoBehaviour, IPlayerActions
     {
         if (context.performed)
         {
-            Debug.Log("Flashlight button pressed");
             OnFlashlightInput?.Invoke();
         }
     }

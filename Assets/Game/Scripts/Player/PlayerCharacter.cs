@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField]
     private Flashlight _flashlight;
+
+    public UnityEvent OnDeath;
 
     // Property untuk mengakses variable _movement
     public PlayerMovement Movement => _movement;
@@ -59,8 +62,8 @@ public class PlayerCharacter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Death() { 
-        
-        Debug.Log("wasted");
+    public void Death()
+    {
+        OnDeath?.Invoke();
     }
 }

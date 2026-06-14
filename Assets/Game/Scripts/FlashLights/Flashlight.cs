@@ -59,6 +59,11 @@ public class Flashlight : MonoBehaviour
         _batteryLevel = _initialBatteryLevel;
     }
 
+    void Start()
+    {
+        HUDManager.Instance.BatteryLevelUI.UpdateBatteryUI(_batteryLevel, _initialBatteryLevel);
+    }
+
     private void Update()
     {
         // Mengupdate rotasi flashlight terus menerus selama game berjalan
@@ -93,6 +98,8 @@ public class Flashlight : MonoBehaviour
                 _batteryLevel = 0;
                 _light.enabled = false;
             }
+
+            HUDManager.Instance.BatteryLevelUI.UpdateBatteryUI(_batteryLevel, _initialBatteryLevel);
         }
     }
 
@@ -100,5 +107,6 @@ public class Flashlight : MonoBehaviour
     {
         // Mengisi ulang batre dengan nilai awal
         _batteryLevel = _initialBatteryLevel;
+        HUDManager.Instance.BatteryLevelUI.UpdateBatteryUI(_batteryLevel, _initialBatteryLevel);
     }
 }

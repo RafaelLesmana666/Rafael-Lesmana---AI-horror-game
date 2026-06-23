@@ -50,11 +50,14 @@ public class PlayerStamina : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_currentStamina < _maxStamina && !CanSprint)
+        if (_currentStamina < _maxStamina)
         {
-            _currentStamina = _currentStamina + _staminaRegenValue * Time.deltaTime;
-            _currentStamina = Mathf.Clamp(_currentStamina, 0, _maxStamina);
-            HUDManager.Instance.StaminaUI.SetStaminaFill(_currentStamina, _maxStamina);
+            if (!CanSprint)
+            {
+                _currentStamina = _currentStamina + _staminaRegenValue * Time.deltaTime;
+                _currentStamina = Mathf.Clamp(_currentStamina, 0, _maxStamina);
+                HUDManager.Instance.StaminaUI.SetStaminaFill(_currentStamina, _maxStamina);
+            }
 
             if (_currentStamina == _maxStamina)
             {

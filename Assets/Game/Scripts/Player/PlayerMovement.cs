@@ -118,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        Debug.Log(Enabled);
         if (Enabled == true)
         {
             // Menghitung arah dan kecepatan gerakan character di sumbu x dan z
@@ -138,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     private void CheckIsGrounded()
     {
         // Mendapatkan layer Ground
-        LayerMask groundLayer = LayerMask.GetMask("Ground");
+        LayerMask groundLayer = LayerMask.GetMask("Environtment");
         // Membuat pendeteksi berbentuk bola
         // Posisi pendeteksi nya di transform.position(posisi kaki character)
         // Radius = 0.5
@@ -168,7 +167,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("playermovement");
         CheckIsGrounded();
         CalculateAcceleration();
 
